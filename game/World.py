@@ -1,5 +1,5 @@
 from tkinter import *
-
+from operator import  attrgetter
 from game.GUI import GUI
 from game.Organism import Organism
 from game.Wolf import Wolf
@@ -25,13 +25,13 @@ class World:
         self.organism[0][5] = Wolf(0, 5)
 
     def move_all(self):
-        for initiative in range(7, 0, -1):
-            for y in range(20):
-                for x in range(20):
-                    if self.organism[x][y] is not None:
-                        if self.organism[x][y].was is False and self.organism[x][y].initiative is initiative:
-                            self.organism[x][y].was = True
-                            self.organism[x][y].action(self)
+        #removed <for loop> iterating by initiative(slows down the program)
+        for y in range(20):
+            for x in range(20):
+                if self.organism[x][y] is not None:
+                    if self.organism[x][y].was is False:
+                        self.organism[x][y].was = True
+                        self.organism[x][y].action(self)
         self.draw_runoff()
         self.set_all_were(False)
 
