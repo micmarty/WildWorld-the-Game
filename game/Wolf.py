@@ -1,0 +1,11 @@
+from tkinter import PhotoImage
+from game.Animal import Animal
+
+class Wolf(Animal):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.initiative = 7
+
+        self.icon = PhotoImage(file='wolf.png')
+        self.was = False

@@ -1,17 +1,10 @@
-from tkinter import PhotoImage
+from abc import ABCMeta, abstractmethod
 
+class Organism(object):
+    __metaclass__ = ABCMeta
 
-class Organism:
-    def __init__(self, x , y):
-        self.x = x
-        self.y = y
-        self.initiative = 7
+    @abstractmethod
+    def action(self, world):
+        raise NotImplemented
 
-        self.icon = PhotoImage(file='wolf.png')
-        self.was = False
-
-    def action(self,world):
-        world.organism[self.x + 1][self.y] = self
-        world.organism[self.x][self.y] = None
-        self.x += 1
 

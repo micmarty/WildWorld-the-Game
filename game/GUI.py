@@ -1,6 +1,6 @@
 from tkinter import *
 
-from game.Organism import Organism
+from game.Wolf import Wolf
 
 
 class GUI:
@@ -27,7 +27,7 @@ class GUI:
         icon = PhotoImage(file='pusty.png')
         for y in range(20):
             for x in range(20):
-                self.label[x][y] = Label(self.lFrame,image=icon,borderwidth=0)
+                self.label[x][y] = Label(self.lFrame, image=icon, borderwidth=0)
                 self.label[x][y].image = icon
                 self.label[x][y].grid(row=y, column=x)
 
@@ -53,7 +53,7 @@ class GUI:
     def insert(self, event, n, m, world):
         """insert wolf onto hovered label, just for fun"""
         img = PhotoImage(file='wolf.png')
-        world.organism[n][m] = Organism(n, m)
+        world.organism[n][m] = Wolf(n, m)
         self.label[n][m].configure(image=img)
         self.label[n][m].image = img
 

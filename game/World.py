@@ -2,6 +2,7 @@ from tkinter import *
 
 from game.GUI import GUI
 from game.Organism import Organism
+from game.Wolf import Wolf
 
 
 class World:
@@ -16,12 +17,12 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-        self.organism[0][0] = Organism(0, 0)
-        self.organism[0][1] = Organism(0, 1)
-        self.organism[0][2] = Organism(0, 2)
-        self.organism[0][3] = Organism(0, 3)
-        self.organism[0][4] = Organism(0, 4)
-        self.organism[0][5] = Organism(0, 5)
+        self.organism[0][0] = Wolf(0, 0)
+        self.organism[0][1] = Wolf(0, 1)
+        self.organism[0][2] = Wolf(0, 2)
+        self.organism[0][3] = Wolf(0, 3)
+        self.organism[0][4] = Wolf(0, 4)
+        self.organism[0][5] = Wolf(0, 5)
 
     def move_all(self):
         for initiative in range(7, 0, -1):
