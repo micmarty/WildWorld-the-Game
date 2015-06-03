@@ -1,7 +1,5 @@
 from tkinter import *
-from operator import  attrgetter
 from game.GUI import GUI
-from game.Organism import Organism
 from game.Wolf import Wolf
 
 

@@ -37,18 +37,40 @@ class GUI:
                 self.label[x][y].bind("<Enter>", make_lambda(x, y, world))
 
 #-Buttons
-        self.nextRun = Button(self.pFrame, text="Next round", bg='blue', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=107, pady=30)
+        self.nextRun = Button(self.pFrame, text="Next round", bg='blue', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=107, pady=32)
         self.nextRun.bind("<Button-1>", lambda event: self.call_runoff(event, world))
         self.master.bind("<Return>", lambda event: self.call_runoff(event, world))
         self.nextRun.pack(side=TOP)
-        #TODO BINDS for LOAD AND SAVE BUTTONS
-        self.nextRun = Button(self.pFrame, text="Save", bg='orange', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=140, pady=30)
-        self.nextRun.bind("<Button-1>")
-        self.nextRun.pack(side=BOTTOM)
 
-        self.nextRun = Button(self.pFrame, text="Load", bg='green', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=140, pady=30)
-        self.nextRun.bind("<Button-1>")
-        self.nextRun.pack(side=BOTTOM)
+        self.saveButton = Button(self.pFrame, text="Save", bg='orange', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=140, pady=30)
+        self.saveButton.bind("<Button-1>")
+        #TODO BINDS for SAVE BUTTON above
+        self.saveButton.pack(side=BOTTOM)
+
+        self.loadButton = Button(self.pFrame, text="Load", bg='green', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=140, pady=30)
+        self.loadButton.bind("<Button-1>")
+        #TODO BINDS for LOAD BUTTON above
+        self.loadButton.pack(side=BOTTOM)
+
+#-text labels (info about dying, eating, killing, etc).
+        """     eating guarana, drinking strength elixir      """
+        self.infoText = StringVar()
+        self.infoText.set("Welcome!\nWSAD - move human (C icon)\nEnter - next round\n")
+        self.raportLabel = Label(self.pFrame, height=6, bg='yellow', anchor=NW, justify=LEFT, textvariable=self.infoText)
+
+        #raport text is automatically updating/changing when you add some text
+        #TODO use it later... very useful example below
+        #self.infoText.set("new kill\n" + self.infoText.get())
+        self.raportLabel.pack(side=BOTTOM, fill=X)
+
+        """     dying , killing     """
+        self.raportText = StringVar()
+        self.raportText.set("Here will be placed info about\nkilling, dying etc..\n")
+        self.raportLabel = Label(self.pFrame, height=6, bg='lightblue', anchor=NW, justify=LEFT, textvariable=self.raportText)
+
+        #raport text is automatically updating/changing when you add some text
+        #self.raportText.set("new kill\n" + self.raportText.get())
+        self.raportLabel.pack(side=BOTTOM, fill=X)
 
     def insert(self, event, n, m, world):
         """insert wolf onto hovered label, just for fun"""

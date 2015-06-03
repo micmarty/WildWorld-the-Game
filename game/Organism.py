@@ -5,6 +5,13 @@ class Organism(object):
 
     @abstractmethod
     def action(self, world):
+        """Moving around - animals
+        Spreading around - plants"""
+        raise NotImplemented
+
+    @abstractmethod
+    def collision(self, world):
+        """Killing, reproducing...of Organisms"""
         raise NotImplemented
 
 
