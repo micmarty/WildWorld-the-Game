@@ -7,9 +7,8 @@ from game.Wolf import Wolf
 
 class World:
     """Container class for all organisms.
-        Here are methods for:
-     -displaying all organisms in labels,
-     -calling next runoff"""
+        Here are methods for:"""
+
     organism = [[0 for x in range(20)]for y in range(20)]
     runoff = 0
 
@@ -39,7 +38,7 @@ class World:
         for y in range(20):
             for x in range(20):
                 if self.organism[x][y] is None:
-                    gui.label[x][y].configure(image=PhotoImage(file='pusty.png'))
+                    gui.label[x][y].configure(image=PhotoImage(file='icons/pusty.png'))
                 else:
                     gui.label[x][y].configure(image=self.organism[x][y].icon)
 

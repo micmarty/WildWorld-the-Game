@@ -24,7 +24,7 @@ class GUI:
 #-2D array of labels initializing (each label is representing their owner)
         self.label = [[0 for x in range(20)] for y in range(20)]
 
-        icon = PhotoImage(file='pusty.png')
+        icon = PhotoImage(file='icons/pusty.png')
         for y in range(20):
             for x in range(20):
                 self.label[x][y] = Label(self.lFrame, image=icon, borderwidth=0)
@@ -52,7 +52,7 @@ class GUI:
 
     def insert(self, event, n, m, world):
         """insert wolf onto hovered label, just for fun"""
-        img = PhotoImage(file='wolf.png')
+        img = PhotoImage(file='icons/wolf.png')
         world.organism[n][m] = Wolf(n, m)
         self.label[n][m].configure(image=img)
         self.label[n][m].image = img

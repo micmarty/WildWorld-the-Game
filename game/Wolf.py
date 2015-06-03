@@ -8,5 +8,5 @@ class Wolf(Animal):
         self.y = y
         self.initiative = 7
 
-        self.icon = PhotoImage(file='wolf.png')
+        self.icon = PhotoImage(file='icons/wolf.png')
         self.was = False
