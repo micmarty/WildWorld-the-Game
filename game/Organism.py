@@ -10,7 +10,7 @@ class Organism(object):
         raise NotImplemented
 
     @abstractmethod
-    def collision(self, world):
+    def collision(self, world, x_obstacle, y_obstacle):
         """Killing, reproducing...of Organisms"""
         raise NotImplemented
 

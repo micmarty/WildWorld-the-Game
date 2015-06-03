@@ -1,12 +1,11 @@
 from tkinter import *
 from game.GUI import GUI
-from game.Wolf import Wolf
 
 
 class World:
     """Container class for all organisms.
         Here are methods for:"""
-
+    #TODO think about sorting objects, age, initiative. runoff variable should be finally used.....
     organism = [[0 for x in range(20)]for y in range(20)]
     runoff = 0
 
@@ -14,12 +13,8 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-        self.organism[0][0] = Wolf(0, 0)
-        self.organism[0][1] = Wolf(0, 1)
-        self.organism[0][2] = Wolf(0, 2)
-        self.organism[0][3] = Wolf(0, 3)
-        self.organism[0][4] = Wolf(0, 4)
-        self.organism[0][5] = Wolf(0, 5)
+
+
 
     def move_all(self):
         #removed <for loop> iterating by initiative(slows down the program)

@@ -4,6 +4,7 @@ from game.Animal import Animal
 class Wolf(Animal):
     initiative = 7
     def __init__(self, x, y):
+        #TODO add 'name'
         self.x = x
         self.y = y
         self.initiative = 7
