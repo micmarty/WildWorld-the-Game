@@ -1,8 +1,6 @@
-from game.Organism import Organism
 from random import randint
-
-#from game.Wolf import Wolf
-#from game.Sheep import Sheep
+from Organism import Organism
+import AnimalsAll
 
 class Animal(Organism):
     age = 0
@@ -11,10 +9,9 @@ class Animal(Organism):
         direction = randint(0, 3)
         call_collision = False
         shift = 1            # moving range
-
-        if self.name is 'Sheep':
-            shift = 0
-
+        #direction = 2
+        #if self.name is 'Sheep':
+            #shift = 0
 
         if direction is 0:   # GO RIGHT
             if self.x < (20 - shift):
@@ -65,12 +62,18 @@ class Animal(Organism):
     def reproduce(self, world):
         for i in range(-1,1,2):
             for j in range(-1,1,2):
-                if self.x>0 and self.y>0 and self.x<(20-1) and self.y(20-1):
-                    if world.organism[self.x+i][self.y+j] is None:
+                if self.x > 0 and self.y > 0 and self.x < (20-1) and self.y< (20-1):
+                    if world.organism[self.x + i][self.y + j] is None:
                         if self.name is 'Wolf':
-                            world.organism[self.x+i][self.y+j] = Wolf(self.x+i,self.y+j)
+                            world.organism[self.x + i][self.y + j] = AnimalsAll.Wolf(self.x + i, self.y + j)
+                            world.raportText.set(self.name + " born at [" + str(self.x + i) + "," + str(self.y + j) + "]" + "\n" + world.raportText.get())
+                        elif self.name is 'Sheep':
+                            world.organism[self.x + i][self.y + j] = AnimalsAll.Sheep(self.x + i, self.y + j)
+                            world.raportText.set(self.name + " born at [" + str(self.x + i) + "," + str(self.y + j) + "]" + "\n" + world.raportText.get())
+
     def win(self, world, x_ob, y_ob):
         #TODO displaying in raportbox
+        world.raportText.set(self.name + " killed " + world.organism[x_ob][y_ob].name + "\n" + world.raportText.get())
         world.organism[x_ob][y_ob] = self
         world.organism[self.x][self.y] = None
         self.x = x_ob

@@ -1,7 +1,5 @@
 from tkinter import *
-
-from game.Sheep import Sheep
-
+from AnimalsAll import Sheep
 
 class GUI:
 
@@ -42,18 +40,18 @@ class GUI:
         #TODO BINDS for LOAD BUTTON above
         self.loadButton.pack(side=BOTTOM)
 
-    def init_text_labels(self):
-        self.raportText.set("Here will be placed info about\nkilling, dying etc..\n")
+    def init_text_labels(self, world):
+        world.raportText.set("\nHere will be placed info about\nkilling, dying etc..\n")
         self.raportLabel.pack(side=TOP, fill=X)
 
-        self.infoText.set("Welcome!\nWSAD - move human (C icon)\nEnter - next round\n")
+        world.infoText.set("\nWelcome!\nWSAD - move human (C icon)\nEnter - next round\n")
         self.infoLabel.pack(side=BOTTOM, fill=X)
 
         #text is automatically updating/changing when you add some text
         #TODO use it later... very useful example below
         #self.infoText.set("new kill\n" + self.infoText.get())
 
-    def __init__(self, master,world):
+    def __init__(self, master, world):
         #-MAIN WINDOW
         self.master = master
         self.master.title("Michal Martyniak 155136")
@@ -75,14 +73,14 @@ class GUI:
 
         #-TEXT LABELS (info about dying, eating, killing, etc).
         """     dying , killing     """
-        self.raportText = StringVar()
-        self.raportLabel = Label(self.pFrame, height=6, bg='red', anchor=NW, justify=LEFT, textvariable=self.raportText)
+        #self.raportText = StringVar()
+        self.raportLabel = Label(self.pFrame, height=6, bg='red', anchor=NW, justify=LEFT, textvariable=world.raportText)
 
         """     eating guarana, drinking strength elixir      """
-        self.infoText = StringVar()
-        self.infoLabel = Label(self.pFrame, height=6, bg='lightblue', anchor=NW, justify=LEFT, textvariable=self.infoText)
+        #self.infoText = StringVar()
+        self.infoLabel = Label(self.pFrame, height=6, bg='lightblue', anchor=NW, justify=LEFT, textvariable=world.infoText)
 
-        self.init_text_labels()
+        self.init_text_labels(world)
 
     def insert(self, event, n, m, world):
         """insert wolf onto hovered label, just for fun"""
