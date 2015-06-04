@@ -1,15 +1,20 @@
 from game.Organism import Organism
 from random import randint
-import game.Wolf
 
+#from game.Wolf import Wolf
+#from game.Sheep import Sheep
 
 class Animal(Organism):
     age = 0
 
     def action(self, world):
-        direction = randint(0, 4)
+        direction = randint(0, 3)
         call_collision = False
         shift = 1            # moving range
+
+        if self.name is 'Sheep':
+            shift = 0
+
 
         if direction is 0:   # GO RIGHT
             if self.x < (20 - shift):
@@ -55,8 +60,30 @@ class Animal(Organism):
             pass
 
         if call_collision is True:
-            world.organism[self.x][self.y].collision(world, x_obstacle, y_obstacle)
+            self.collision(world, x_obstacle, y_obstacle)
+
+    def reproduce(self, world):
+        for i in range(-1,1,2):
+            for j in range(-1,1,2):
+                if self.x>0 and self.y>0 and self.x<(20-1) and self.y(20-1):
+                    if world.organism[self.x+i][self.y+j] is None:
+                        if self.name is 'Wolf':
+                            world.organism[self.x+i][self.y+j] = Wolf(self.x+i,self.y+j)
+    def win(self, world, x_ob, y_ob):
+        #TODO displaying in raportbox
+        world.organism[x_ob][y_ob] = self
+        world.organism[self.x][self.y] = None
+        self.x = x_ob
+        self.y = y_ob
+
+    def loose(self, world, x_ob, y_ob):
+        #TODO displaying in raportbox
+        world.organism[self.x][self.y] = None
 
     def collision(self, world, x_obstacle, y_obstacle):
-        #TODO make something reasonable
-        world.organism[x_obstacle+1][y_obstacle] = game.Wolf.Wolf(x_obstacle + 1, y_obstacle)
+        if self.name is world.organism[x_obstacle][y_obstacle].name:
+            self.reproduce(world)
+        elif self.strength >= world.organism[x_obstacle][y_obstacle].strength:
+            self.win(world, x_obstacle, y_obstacle)
+        elif self.strength < world.organism[x_obstacle][y_obstacle].strength:
+            self.loose(world, x_obstacle, y_obstacle)

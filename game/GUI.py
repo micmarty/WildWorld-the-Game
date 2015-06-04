@@ -1,6 +1,6 @@
 from tkinter import *
 
-from game.Wolf import Wolf
+from game.Sheep import Sheep
 
 
 class GUI:
@@ -86,13 +86,14 @@ class GUI:
 
     def insert(self, event, n, m, world):
         """insert wolf onto hovered label, just for fun"""
-        img = PhotoImage(file='icons/wolf.png')
-        world.organism[n][m] = Wolf(n, m)
+        img = PhotoImage(file='icons/owca.png')
+        world.organism[n][m] = Sheep(n, m)
         self.label[n][m].configure(image=img)
         self.label[n][m].image = img
 
     def call_runoff(self, event, world):
         world.move_all()
+        world.runoff += 1
 
 
 

@@ -1,5 +1,8 @@
 from tkinter import *
+
 from game.GUI import GUI
+from game.Wolf import Wolf
+from game.Sheep import Sheep
 
 
 class World:
@@ -13,8 +16,10 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-
-
+        self.organism[10][10] = Wolf(10, 10)
+        self.organism[2][0] = Sheep(2, 0)
+        self.organism[1][1] = Sheep(1, 1)
+        self.organism[0][1] = Sheep(0, 1)
 
     def move_all(self):
         #removed <for loop> iterating by initiative(slows down the program)
