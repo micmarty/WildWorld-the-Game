@@ -26,20 +26,22 @@ class World:
         self.organism[10][10] = Wolf(10, 10)
 
 
-    def sort(self, list):
+    def sort(self, array):
+        """sorting organisms by initiative, then by age"""
         for y in range(20):
             for x in range(20):
                 if self.organism[x][y] is not None:
-                    list.append(world.organism[x][y])
-        list[:] = sorted(list, key=lambda Organism: (Organism.initiative, Organism.age), reverse=True)
+                    array.append(world.organism[x][y])
+        array[:] = sorted(array, key=lambda Organism: (Organism.initiative, Organism.age), reverse=True)
 
 
     def move_all(self):
-        self.infoText.set("ROUND:" + str(self.runoff) + "\n")
-        sortedOrganisms = []
-        self.sort(sortedOrganisms)
+        """call action for all organisms and drawing later. Increases runoff number, ang """
+        self.infoText.set("ROUND : " + str(self.runoff) + "\n")
+        sorted_organisms = []
+        self.sort(sorted_organisms)
 
-        for i in sortedOrganisms:
+        for i in sorted_organisms:
             if self.organism[i.x][i.y] is i:
                 i.action(self)
                 i.age += 1
@@ -49,6 +51,7 @@ class World:
 
 
     def draw_runoff(self):
+        """display appropriate icons in labels, if there's no organism->show empty png file"""
         for y in range(20):
             for x in range(20):
                 if self.organism[x][y] is None:
