@@ -93,7 +93,6 @@ class GUI:
 
     def call_runoff(self, event, world):
         world.move_all()
-        world.runoff += 1
 
 
 

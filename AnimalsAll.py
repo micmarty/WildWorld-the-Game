@@ -12,7 +12,6 @@ class Wolf(Animal):
         self.initiative = 5
 
         self.icon = PhotoImage(file='icons/wolf.png')
-        self.was = False
 
 class Sheep(Animal):
 
@@ -25,4 +24,15 @@ class Sheep(Animal):
         self.initiative = 4
 
         self.icon = PhotoImage(file='icons/owca.png')
-        self.was = False
+
+class Fox(Animal):
+
+    def __init__(self, x, y):
+        self.name = 'Fox'
+        self.x = x
+        self.y = y
+
+        self.strength = 3
+        self.initiative = 7
+
+        self.icon = PhotoImage(file='icons/lis.png')

@@ -11,8 +11,7 @@ class World:
         Here are methods for:"""
     #TODO think about sorting objects, age, initiative. runoff variable should be finally used.....
     organism = [[0 for x in range(20)]for y in range(20)]
-
-    runoff = 0
+    runoff = 1
 
     def __init__(self):
         # TEXT LABELS FOR SHOWING MOST IMPORTANT INFO
@@ -26,6 +25,7 @@ class World:
         self.organism[9][10] = Wolf(9, 10)
         self.organism[10][10] = Wolf(10, 10)
 
+
     def sort(self, list):
         for y in range(20):
             for x in range(20):
@@ -33,7 +33,9 @@ class World:
                     list.append(world.organism[x][y])
         list[:] = sorted(list, key=lambda Organism: (Organism.initiative, Organism.age), reverse=True)
 
+
     def move_all(self):
+        self.infoText.set("ROUND:" + str(self.runoff) + "\n")
         sortedOrganisms = []
         self.sort(sortedOrganisms)
 
@@ -41,15 +43,10 @@ class World:
             if self.organism[i.x][i.y] is i:
                 i.action(self)
                 i.age += 1
-        '''for i in range(7, 2, -1):
-            for y in range(20):
-                for x in range(20):
-                    if self.organism[x][y] is not None:
-                        if self.organism[x][y].was is False:
-                            self.organism[x][y].was = True
-                            self.organism[x][y].action(self)'''
         self.draw_runoff()
-        # self.set_all_were(False)
+        self.runoff += 1
+
+
 
     def draw_runoff(self):
         for y in range(20):
@@ -59,11 +56,6 @@ class World:
                 else:
                     gui.label[x][y].configure(image=self.organism[x][y].icon)
 
-    def set_all_were(self, new_state):
-        for y in range(20):
-            for x in range(20):
-                if self.organism[x][y] is not None:
-                    self.organism[x][y].was = new_state
 
 if __name__ == '__main__':
     root = Tk()

@@ -7,14 +7,16 @@ from Organism import Organism
 class Animal(Organism):
     age = 0
 
+    def move(self):
+        #TODO typical movement here
+        pass
+
+
     def action(self, world):
+        """an Animal do something(typically moving, avoiding enemies or stay in place"""
         direction = randint(0, 3)
         call_collision = False
         shift = 1            # moving range
-        # direction = 3
-        if self.name is 'Sheep':
-            direction = 3
-
 
         if direction is 0:   # GO RIGHT
             if self.x < (20 - shift):
@@ -62,25 +64,26 @@ class Animal(Organism):
         if call_collision is True:
             self.collision(world, x_obstacle, y_obstacle)
 
+
     def give_clone(self, x_new, y_new):
+        """returns new child of some Animals with age=0 ant appropriate coordinates"""
         z = copy.deepcopy(self)
         z.x = x_new
         z.y = y_new
         z.age = 0
         return z
 
+
     def reproduce(self, world):
         """called when two Animals of the same class meets together"""
         """they look for empty label in neighboring labels"""
         x, y = randint(-1, 1), randint(-1, 1)
-        if self.x + x >= 0 and self.y + y >= 0 and self.x + x <= 19 and self.y + y <= 19 and world.organism[self.x + x][
-                    self.y + y] is None:
+        if self.x + x >= 0 and self.y + y >= 0 and self.x + x <= 19 and self.y + y <= 19 and world.organism[self.x + x][self.y + y] is None:
             #update new event on raportLabel
+            world.organism[self.x + x][self.y + y] = self.give_clone(self.x + x, self.y + y)
+            world.raportText.set(self.name + " born at " + "[" + str(self.x + x) + "," + str(self.y + y) + "]\n" + world.raportText.get())
 
-            world.organism[self.x + x][self.y + y] = self.give_clone(self.x + x,
-                                                                     self.y + y)  # AnimalsAll.Wolf(self.x + x, self.y + y)
-            world.raportText.set(
-                self.name + " born at " + "[" + str(self.x + x) + "," + str(self.y + y) + "]\n" + world.raportText.get())
+
     def win(self, world, x_ob, y_ob):
         """called when Animal, that makes action will find WEAKER opponent"""
         #update new event on raportLabel
