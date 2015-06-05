@@ -1,6 +1,8 @@
 from random import randint
+import copy
+
 from Organism import Organism
-import AnimalsAll
+
 
 class Animal(Organism):
     age = 0
@@ -9,9 +11,10 @@ class Animal(Organism):
         direction = randint(0, 3)
         call_collision = False
         shift = 1            # moving range
-        #direction = 2
-        #if self.name is 'Sheep':
-            #shift = 0
+        # direction = 3
+        if self.name is 'Sheep':
+            direction = 3
+
 
         if direction is 0:   # GO RIGHT
             if self.x < (20 - shift):
@@ -59,33 +62,46 @@ class Animal(Organism):
         if call_collision is True:
             self.collision(world, x_obstacle, y_obstacle)
 
-    def reproduce(self, world):
-        for i in range(-1,1,2):
-            for j in range(-1,1,2):
-                if self.x > 0 and self.y > 0 and self.x < (20-1) and self.y< (20-1):
-                    if world.organism[self.x + i][self.y + j] is None:
-                        if self.name is 'Wolf':
-                            world.organism[self.x + i][self.y + j] = AnimalsAll.Wolf(self.x + i, self.y + j)
-                            world.raportText.set(self.name + " born at [" + str(self.x + i) + "," + str(self.y + j) + "]" + "\n" + world.raportText.get())
-                        elif self.name is 'Sheep':
-                            world.organism[self.x + i][self.y + j] = AnimalsAll.Sheep(self.x + i, self.y + j)
-                            world.raportText.set(self.name + " born at [" + str(self.x + i) + "," + str(self.y + j) + "]" + "\n" + world.raportText.get())
+    def give_clone(self, x_new, y_new):
+        z = copy.deepcopy(self)
+        z.x = x_new
+        z.y = y_new
+        z.age = 0
+        return z
 
+    def reproduce(self, world):
+        """called when two Animals of the same class meets together"""
+        """they look for empty label in neighboring labels"""
+        x, y = randint(-1, 1), randint(-1, 1)
+        if self.x + x >= 0 and self.y + y >= 0 and self.x + x <= 19 and self.y + y <= 19 and world.organism[self.x + x][
+                    self.y + y] is None:
+            #update new event on raportLabel
+
+            world.organism[self.x + x][self.y + y] = self.give_clone(self.x + x,
+                                                                     self.y + y)  # AnimalsAll.Wolf(self.x + x, self.y + y)
+            world.raportText.set(
+                self.name + " born at " + "[" + str(self.x + x) + "," + str(self.y + y) + "]\n" + world.raportText.get())
     def win(self, world, x_ob, y_ob):
-        #TODO displaying in raportbox
+        """called when Animal, that makes action will find WEAKER opponent"""
+        #update new event on raportLabel
         world.raportText.set(self.name + " killed " + world.organism[x_ob][y_ob].name + "\n" + world.raportText.get())
+
         world.organism[x_ob][y_ob] = self
         world.organism[self.x][self.y] = None
         self.x = x_ob
         self.y = y_ob
 
     def loose(self, world, x_ob, y_ob):
-        #TODO displaying in raportbox
+        """called when Animal, that makes action will find STRONGER opponent"""
+        world.raportText.set(self.name + " killed by " + world.organism[x_ob][y_ob].name + "\n" + world.raportText.get())
         world.organism[self.x][self.y] = None
 
     def collision(self, world, x_obstacle, y_obstacle):
+        """Decide wheter type of collision it is and call appropriate behaviour"""
         if self.name is world.organism[x_obstacle][y_obstacle].name:
+            #if self.age > 1 and world.organism[x_obstacle][y_obstacle].age > 1:
             self.reproduce(world)
+            #else:
         elif self.strength >= world.organism[x_obstacle][y_obstacle].strength:
             self.win(world, x_obstacle, y_obstacle)
         elif self.strength < world.organism[x_obstacle][y_obstacle].strength:

@@ -9,6 +9,7 @@ class Organism(object):
         self.x = 0
         self.y = 0
 
+        self.age = 0
         self.strength = 0
         self.initiative = 0
 
