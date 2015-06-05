@@ -1,6 +1,6 @@
 from tkinter import *
 
-from AnimalsAll import Wolf
+from AnimalsAll import Wolf, Fox
 
 
 class GUI:
@@ -25,8 +25,11 @@ class GUI:
 
                 #Hovering at labels puts Wolf in there :D
                 def make_lambda(xx, yy, worldd):
-                    return lambda event: self.insert(event, xx, yy, worldd)
-                self.label[x][y].bind("<Enter>", make_lambda(x, y, world))
+                    return lambda event: self.insertWolf(event, xx, yy, worldd)
+                def make_lambdaa(xx, yy, worldd):
+                    return lambda event: self.insertFox(event, xx, yy, worldd)
+                self.label[x][y].bind("<Button-1>", make_lambda(x, y, world))
+                self.label[x][y].bind("<Button-3>", make_lambdaa(x, y, world))
 
     def init_buttons(self, world):
         """sets three buttons: NEXT ROUND, SAVE, LOAD"""
@@ -84,12 +87,17 @@ class GUI:
 
         self.init_text_labels(world)
 
-    def insert(self, event, n, m, world):
+    def insertWolf(self, event, n, m, world):
         """insert wolf onto hovered label, just for fun"""
-        img = PhotoImage(file='icons/owca.png')
         world.organism[n][m] = Wolf(n, m)
         self.label[n][m].configure(image=world.organism[n][m].icon)
-        self.label[n][m].image = img
+        self.label[n][m].image = world.organism[n][m].icon
+
+    def insertFox(self, event, n, m, world):
+        """insert fox onto hovered label, just for fun"""
+        world.organism[n][m] = Fox(n, m)
+        self.label[n][m].configure(image=world.organism[n][m].icon)
+        self.label[n][m].image = world.organism[n][m].icon
 
     def call_runoff(self, event, world):
         world.move_all()

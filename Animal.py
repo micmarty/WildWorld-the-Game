@@ -2,7 +2,7 @@ from random import randint
 import copy
 
 from Organism import Organism
-
+import AnimalsAll
 
 class Animal(Organism):
     age = 0
@@ -80,7 +80,8 @@ class Animal(Organism):
         x, y = randint(-1, 1), randint(-1, 1)
         if self.x + x >= 0 and self.y + y >= 0 and self.x + x <= 19 and self.y + y <= 19 and world.organism[self.x + x][self.y + y] is None:
             #update new event on raportLabel
-            world.organism[self.x + x][self.y + y] = self.give_clone(self.x + x, self.y + y)
+            #TODO HUGE PROBLEM, cloning didn't work. Propably need to hardcode it :(
+            world.organism[self.x + x][self.y + y] = AnimalsAll.Fox(self.x + x, self.y + y)#self.give_clone(self.x + x, self.y + y)
             world.raportText.set(self.name + " born at " + "[" + str(self.x + x) + "," + str(self.y + y) + "]\n" + world.raportText.get())
 
 

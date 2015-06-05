@@ -1,7 +1,7 @@
 from tkinter import *
 
 from GUI import GUI
-from AnimalsAll import Wolf
+from AnimalsAll import Wolf, Sheep, Fox
 
 #from Sheep import Sheep
 
@@ -9,7 +9,6 @@ from AnimalsAll import Wolf
 class World:
     """Container class for all organisms.
         Here are methods for:"""
-    #TODO think about sorting objects, age, initiative. runoff variable should be finally used.....
     organism = [[0 for x in range(20)]for y in range(20)]
     runoff = 1
 
@@ -21,9 +20,9 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-        self.organism[11][11] = Wolf(11, 11)
-        self.organism[9][10] = Wolf(9, 10)
-        self.organism[10][10] = Wolf(10, 10)
+        #self.organism[11][11] = Wolf(11, 11)
+        #self.organism[9][10] = Fox(9, 10)
+        self.organism[10][10] = Fox(10, 10)
 
 
     def sort(self, array):
