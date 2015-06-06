@@ -3,6 +3,7 @@ AUTHOR: Michal Martyniak, Poland
 Wild world simulator ->  turn-based game.
 
 Base info:
+
 -Game written in OOP Python.
 
 -GUI made in Tkinter library.
@@ -25,9 +26,13 @@ age - if there are two animals with the same initiative, the older one moves fir
 
 
 Animal species:
+
   they move around, reproduce themself, kill each other, eat plants
+  
 Plants species:
+
   they just spread around the map and stay in place
+  
 
 Animals: 
   *Human: he moves using WSAD, T- elixir that gives up to 10 strength
