@@ -59,6 +59,7 @@ class Animal(Organism):
         call_collision, x_obstacle, y_obstacle = False, 0, 0
         params = [call_collision, x_obstacle, y_obstacle]
 
+
         self.move(world, direction, shift, params)
 
         if params[0] is True:
@@ -100,7 +101,7 @@ class Animal(Organism):
         world.raportText.set(self.name + " killed by " + world.organism[x_ob][y_ob].name + "\n" + world.raportText.get())
         world.organism[self.x][self.y] = None
 
-    def collision(self, world, x_obstacle, y_obstacle):
+    def collide(self, world, x_obstacle, y_obstacle):
         """Decide wheter type of collision it is and call appropriate behaviour"""
         if self.name is world.organism[x_obstacle][y_obstacle].name:
             #if self.age > 1 and world.organism[x_obstacle][y_obstacle].age > 1:
@@ -110,3 +111,24 @@ class Animal(Organism):
             self.win(world, x_obstacle, y_obstacle)
         elif self.strength < world.organism[x_obstacle][y_obstacle].strength:
             self.loose(world, x_obstacle, y_obstacle)
+
+
+    def collision(self, world, x_obstacle, y_obstacle):
+
+        # Turtle: No one who has strength more than 5 can attack Turtle
+        if self.strength < 5 and world.organism[x_obstacle][y_obstacle].name is 'Turtle':
+            return
+
+        #Antelope can avoid attack and call action once more
+        if world.organism[x_obstacle][y_obstacle].name is 'Antelope':
+            survive = randint(0, 1)
+            print(survive)
+            if survive is 1:
+                world.organism[x_obstacle][y_obstacle].action(world)
+                world.raportText.set("Antelope tried to run away\n" + world.raportText.get())
+            else:
+                world.raportText.set("Antelope has surrender\n" + world.raportText.get())
+            return
+
+
+        self.collide(world, x_obstacle, y_obstacle)

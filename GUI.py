@@ -1,6 +1,6 @@
 from tkinter import *
 
-from AnimalsAll import Wolf, Fox
+from AnimalsAll import Wolf, Fox, Antelope
 
 
 class GUI:
@@ -96,7 +96,7 @@ class GUI:
 
     def insertFox(self, event, n, m, world):
         """insert fox onto hovered label, just for fun"""
-        world.organism[n][m] = Fox(n, m)
+        world.organism[n][m] = Antelope(n, m)
         self.label[n][m].configure(image=world.organism[n][m].icon)
         self.label[n][m].image = world.organism[n][m].icon
 

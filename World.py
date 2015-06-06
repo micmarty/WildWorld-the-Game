@@ -1,7 +1,7 @@
 from tkinter import *
 
 from GUI import GUI
-from AnimalsAll import Wolf, Sheep, Fox, Human
+from AnimalsAll import Wolf, Sheep, Fox, Turtle,Antelope, Human
 
 
 class World:
@@ -21,9 +21,9 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-        self.organism[11][11] = Fox(11, 11)
-        #self.organism[9][10] = Fox(9, 10)
-        self.organism[10][10] = Human(10, 10)
+        self.organism[11][11] = Antelope(11, 11)
+        #self.organism[9][10] = Antelope(9, 10)
+        #self.organism[10][10] = Human(10, 10)
 
 
     def sort(self, array):
@@ -47,7 +47,6 @@ class World:
                 i.age += 1
         self.draw_runoff()
         self.runoff += 1
-
 
 
     def draw_runoff(self):

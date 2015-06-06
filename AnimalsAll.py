@@ -54,6 +54,57 @@ class Fox(Animal):
                 return
             self.collision(world, params[1], params[2])
 
+class Turtle(Animal):
+
+    def __init__(self, x, y):
+        self.name = 'Turtle'
+        self.x = x
+        self.y = y
+
+        self.strength = 2
+        self.initiative = 1
+
+        self.icon = PhotoImage(file='icons/zolw.png')
+
+    def action(self, world):
+        """Turtle moves seldom, it has lower chance to take a step"""
+        direction = randint(0, 15)
+        shift = 1            # moving range
+        call_collision, x_obstacle, y_obstacle = False, 0, 0
+        params = [call_collision, x_obstacle, y_obstacle]
+
+        self.move(world, direction, shift, params)
+
+        if params[0] is True:
+            self.collision(world, params[1], params[2])
+
+    def collision(self, world, x_obstacle, y_obstacle):
+        self.collide(world, x_obstacle, y_obstacle)
+
+class Antelope(Animal):
+
+    def __init__(self, x, y):
+        self.name = 'Antelope'
+        self.x = x
+        self.y = y
+
+        self.strength = 4
+        self.initiative = 4
+
+        self.icon = PhotoImage(file='icons/antylopa.png')
+
+    def action(self, world):
+        """Antelope makes two steps at once"""
+        direction = randint(0, 3)
+        shift = 2            # Antelope has range = 2
+        call_collision, x_obstacle, y_obstacle = False, 0, 0
+        params = [call_collision, x_obstacle, y_obstacle]
+
+        self.move(world, direction, shift, params)
+
+        if params[0] is True:
+            self.collision(world, params[1], params[2])
+
 class Human(Animal):
 
     def __init__(self, x, y):
@@ -81,7 +132,7 @@ class Human(Animal):
             if self.elixir_works is False:
                 self.drinking_round = world.runoff + 5
                 self.elixir_works = True
-                self.strength = 11
+                self.strength = 10
                 world.infoText.set("Elixir used. It will stop working in round "+ str(self.drinking_round)+"\n"+world.infoText.get())
             else:
                 world.infoText.set("Elixir already works\n" + world.infoText.get())
@@ -89,12 +140,11 @@ class Human(Animal):
             self.move(world, direction, shift, params)
 
 
-
         if self.elixir_works is True:
-            if self.strength >= 5:
+            if self.strength > 5:
                 self.strength -= 1
                 world.infoText.set("Current human strength: "+ str(self.strength) +"\n" + world.infoText.get())
-            elif self.drinking_round is world.runoff:
+            else:
                 self.elixir_works = False
 
         if params[0] is True:
