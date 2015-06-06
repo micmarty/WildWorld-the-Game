@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import *
 from random import randint
-from AnimalsAll import Wolf, Sheep, Fox, Turtle, Antelope
+from AnimalsAll import Wolf, Sheep, Fox, Turtle, Antelope, Human
 from PlantsAll import Grass, SowThistle, Guarana, DeadlyNightshade
 
 class GUI:
@@ -40,11 +40,9 @@ class GUI:
         self.nextRun.pack(side=TOP)
 
         self.saveButton.bind("<Button-1>", lambda event: self.save_game(event, world))
-        #TODO BINDS for SAVE BUTTON above
         self.saveButton.pack(side=BOTTOM)
 
-        self.loadButton.bind("<Button-1>")
-        #TODO BINDS for LOAD BUTTON above
+        self.loadButton.bind("<Button-1>", lambda event: self.load_game(event, world))
         self.loadButton.pack(side=BOTTOM)
 
     def init_text_labels(self, world):
@@ -106,7 +104,7 @@ class GUI:
                 elif world.organism[x][y].name is 'Fox':
                     text2save = str(text2save) + "L"
                 elif world.organism[x][y].name is 'Turtle':
-                    text2save = str(text2save) + "T"
+                    text2save = str(text2save) + "Z"
                 elif world.organism[x][y].name is 'Antelope':
                     text2save = str(text2save) + "A"
                 elif world.organism[x][y].name is 'Human':
@@ -120,9 +118,49 @@ class GUI:
                 elif world.organism[x][y].name is 'DeadlyNightshade':
                     text2save = str(text2save) + "J"
             text2save = text2save + "\n"
-            print(text2save)
         f.write(text2save)
         f.close() # `()` was missing.
+
+    def load_game(self, event, world):
+        x, y = 0, 0
+        with askopenfile(mode='r', defaultextension=".txt") as f:
+            while True:
+                c = f.read(1)
+                if not c:
+                    break
+                else:
+                    if c is 'W':
+                        world.organism[x][y] = Wolf(x, y)
+                    elif c is 'O':
+                        world.organism[x][y] = Sheep(x, y)
+                    elif c is 'L':
+                        world.organism[x][y] = Fox(x, y)
+                    elif c is 'Z':
+                        world.organism[x][y] = Turtle(x, y)
+                    elif c is 'A':
+                        world.organism[x][y] = Antelope(x, y)
+                    elif c is 'C':
+                        world.organism[x][y] = Human(x, y)
+                    elif c is 'T':
+                        world.organism[x][y] = Grass(x, y)
+                    elif c is 'M':
+                        world.organism[x][y] = SowThistle(x, y)
+                    elif c is 'G':
+                        world.organism[x][y] = Guarana(x, y)
+                    elif c is 'J':
+                        world.organism[x][y] = DeadlyNightshade(x, y)
+                    else:
+                        world.organism[x][y] = None
+
+                    if x is 19:
+                        y += 1
+                        x = 0
+                    if x <= 18:
+                        x += 1
+                    if x is 19 and y is 19:
+                        break
+
+        world.draw_runoff()
 
 
     def insertRandomly(self, event, n, m, world):
