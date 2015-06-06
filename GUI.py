@@ -110,8 +110,10 @@ class GUI:
             world.h_dir = 2
         elif e.char is 'w':
             world.h_dir = 3
+        elif e.char is 't':
+            world.h_dir = 'elixir'
         else:
-            world.h_dir = -1
+            world.h_dir = -10
 
 
     def call_runoff(self, event, world):

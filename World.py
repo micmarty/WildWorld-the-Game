@@ -37,7 +37,7 @@ class World:
 
     def move_all(self):
         """call action for all organisms and drawing later. Increases runoff number, ang """
-        self.infoText.set("ROUND : " + str(self.runoff) + "\n")
+        self.infoText.set("ROUND : " + str(self.runoff) + "\n" + self.infoText.get())
         sorted_organisms = []
         self.sort(sorted_organisms)
 
