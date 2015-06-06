@@ -2,7 +2,7 @@ from tkinter import *
 
 from GUI import GUI
 from AnimalsAll import Wolf, Sheep, Fox, Turtle,Antelope, Human
-from PlantsAll import Grass,SowThistle, Guarana, DeadlyNightshade
+from PlantsAll import Grass, SowThistle, Guarana, DeadlyNightshade
 
 
 class World:
@@ -10,7 +10,7 @@ class World:
         Here are methods for:"""
     organism = [[0 for x in range(20)]for y in range(20)]
     h_dir = -1
-    runoff = 1
+    runoff = 1          # round counter
 
     def __init__(self):
         # TEXT LABELS FOR SHOWING MOST IMPORTANT INFO

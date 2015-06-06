@@ -1,4 +1,5 @@
 from tkinter import *
+
 from tkinter.filedialog import *
 from random import randint
 from AnimalsAll import Wolf, Sheep, Fox, Turtle, Antelope, Human
@@ -7,7 +8,8 @@ from PlantsAll import Grass, SowThistle, Guarana, DeadlyNightshade
 class GUI:
 
     def init_frames(self):
-        """sets left and right content frames"""
+        # sets LEFT and RIGHT frames
+
         self.lFrame.grid_propagate(False)
 
         self.pFrame = Frame(self.master, bg='white', width=500, height=500)
@@ -24,24 +26,26 @@ class GUI:
                 self.label[x][y].image = icon
                 self.label[x][y].grid(row=y, column=x)
 
-                #Hovering at labels puts Wolf in there :D
+                #Hovering at labels puts random organism in there
                 def make_lambda(xx, yy, worldd):
-                    return lambda event: self.insertRandomly(event, xx, yy, worldd)
-
-                def make_lambdaa(xx, yy, worldd):
-                    return lambda event: self.insertFox(event, xx, yy, worldd)
+                    return lambda event: self.insert_randomly(event, xx, yy, worldd)
                 self.label[x][y].bind("<Enter>", make_lambda(x, y, world))
 
     def init_buttons(self, world):
         """sets three buttons: NEXT ROUND, SAVE, LOAD"""
+        # next round bind
         self.nextRun.bind("<Button-1>", lambda event: self.call_runoff(event, world))
+
+        # keys bounded to master
         self.master.bind("<Return>", lambda event: self.call_runoff(event, world))
         self.master.bind("<KeyPress>", lambda e: self.key_press(e, world))
         self.nextRun.pack(side=TOP)
 
+        #SAVE BUTTON
         self.saveButton.bind("<Button-1>", lambda event: self.save_game(event, world))
         self.saveButton.pack(side=BOTTOM)
 
+        #LOAD BUTTON
         self.loadButton.bind("<Button-1>", lambda event: self.load_game(event, world))
         self.loadButton.pack(side=BOTTOM)
 
@@ -50,16 +54,12 @@ class GUI:
         self.raportLabel.pack(side=TOP, fill=X)
 
         world.infoText.set("\nWelcome!\nWSAD - move human (C icon)\nEnter - next round\n")
-        self.infoLabel.pack(side=BOTTOM, fill=X)
-
-        #text is automatically updating/changing when you add some text
-        #TODO use it later... very useful example below
-        #self.infoText.set("new kill\n" + self.infoText.get())
+        self.infoLabel.pack(side=TOP, fill=X)
 
     def __init__(self, master, world):
         #-MAIN WINDOW
         self.master = master
-        self.master.title("Michal Martyniak 155136")
+        self.master.title("Wild world simulator - Michal Martyniak 155136")
         self.master.resizable(0, 0)
 
         #-FRAMES (Division main window by 2)
@@ -71,25 +71,28 @@ class GUI:
         self.init_labels(world)
 
         #-Buttons
-        self.nextRun = Button(self.pFrame, text="Next round", bg='blue', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=107, pady=32)
-        self.saveButton = Button(self.pFrame, text="Save", bg='orange', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=140, pady=30)
-        self.loadButton = Button(self.pFrame, text="Load", bg='green', relief=RIDGE, cursor='dotbox', font='consolas', borderwidth=10, padx=140, pady=30)
+        self.nextRun = Button(self.pFrame, text="Next round", bg='blue', relief=RIDGE, cursor='dotbox', font='Consolas',
+                              borderwidth=10, padx=107, pady=30)
+        self.saveButton = Button(self.pFrame, text="Save", bg='orange', relief=RIDGE, cursor='dotbox', font='Consolas',
+                                 borderwidth=10, padx=134, pady=30)
+        self.loadButton = Button(self.pFrame, text="Load", bg='green', relief=RIDGE, cursor='dotbox', font='Consolas',
+                                 borderwidth=10, padx=134, pady=30)
         self.init_buttons(world)
 
         #-TEXT LABELS (info about dying, eating, killing, etc).
         """     dying , killing     """
-        #self.raportText = StringVar()
-        self.raportLabel = Label(self.pFrame, height=6, bg='red', anchor=NW, justify=LEFT, textvariable=world.raportText)
+        self.raportLabel = Label(self.pFrame, height=10, bg='lightblue', anchor=NW, justify=LEFT,
+                                 textvariable=world.raportText)
 
         """     eating guarana, drinking strength elixir      """
-        #self.infoText = StringVar()
-        self.infoLabel = Label(self.pFrame, height=6, bg='lightblue', anchor=NW, justify=LEFT, textvariable=world.infoText)
-
+        self.infoLabel = Label(self.pFrame, height=8, bg='lightgreen', anchor=NW, justify=LEFT,
+                               textvariable=world.infoText)
         self.init_text_labels(world)
 
-    def save_game(self, event, world):
+    @staticmethod
+    def save_game(event, world):
         f = asksaveasfile(mode='w', defaultextension=".txt")
-        if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
+        if f is None:  # asksaveasfile return `None` if dialog closed with "cancel".
             return
 
         text2save = ""
@@ -117,11 +120,13 @@ class GUI:
                     text2save = str(text2save) + "G"
                 elif world.organism[x][y].name is 'DeadlyNightshade':
                     text2save = str(text2save) + "J"
-            text2save = text2save + "\n"
-        f.write(text2save)
-        f.close() # `()` was missing.
+            text2save += "\n"
 
-    def load_game(self, event, world):
+        f.write(text2save)
+        f.close()
+
+    @staticmethod
+    def load_game(event, world):
         x, y = 0, 0
         with askopenfile(mode='r', defaultextension=".txt") as f:
             while True:
@@ -163,8 +168,9 @@ class GUI:
         world.draw_runoff()
 
 
-    def insertRandomly(self, event, n, m, world):
+    def insert_randomly(self, event, n, m, world):
         """insert randomly organisms onto hovered label, just for fun"""
+        # it's a magic pen. Hovering at labels puts random organism in there
         a = randint(0, 7)
         if a is 0:
             world.organism[n][m] = Wolf(n, m)
@@ -186,13 +192,8 @@ class GUI:
         self.label[n][m].configure(image=world.organism[n][m].icon)
         self.label[n][m].image = world.organism[n][m].icon
 
-    def insertFox(self, event, n, m, world):
-        """insert fox onto hovered label, just for fun"""
-        world.organism[n][m] = Antelope(n, m)
-        self.label[n][m].configure(image=world.organism[n][m].icon)
-        self.label[n][m].image = world.organism[n][m].icon
-
-    def key_press(self, e, world):
+    @staticmethod
+    def key_press(e, world):
         """Handle directions for human movement"""
         if e.char is 'd':
             world.h_dir = 0
@@ -207,7 +208,8 @@ class GUI:
         else:
             world.h_dir = -10
 
-    def call_runoff(self, event, world):
+    @staticmethod
+    def call_runoff(event, world):
         """Called on NextRound button clicking, or pressing Enter"""
         world.move_all()
 

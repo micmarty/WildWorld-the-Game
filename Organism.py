@@ -14,7 +14,6 @@ class Organism(object):
         self.initiative = 0
 
         self.icon = None
-        self.was = False
 
     @abstractmethod
     def action(self, world):
