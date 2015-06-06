@@ -29,9 +29,16 @@ Animal species:
 
   they move around, reproduce themself, kill each other, eat plants
   
+  
+  
+  
 Plants species:
 
   they just spread around the map and stay in place
+  
+  
+  
+  
   
 
 Animals: 
