@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.filedialog import *
 from random import randint
 from AnimalsAll import Wolf, Sheep, Fox, Turtle, Antelope
 from PlantsAll import Grass, SowThistle, Guarana, DeadlyNightshade
@@ -38,7 +39,7 @@ class GUI:
         self.master.bind("<KeyPress>", lambda e: self.key_press(e, world))
         self.nextRun.pack(side=TOP)
 
-        self.saveButton.bind("<Button-1>")
+        self.saveButton.bind("<Button-1>", lambda event: self.save_game(event, world))
         #TODO BINDS for SAVE BUTTON above
         self.saveButton.pack(side=BOTTOM)
 
@@ -88,6 +89,42 @@ class GUI:
 
         self.init_text_labels(world)
 
+    def save_game(self, event, world):
+        f = asksaveasfile(mode='w', defaultextension=".txt")
+        if f is None: # asksaveasfile return `None` if dialog closed with "cancel".
+            return
+
+        text2save = ""
+        for y in range(20):
+            for x in range(20):
+                if world.organism[x][y] is None:
+                    text2save = str(text2save) + "-"
+                elif world.organism[x][y].name is 'Wolf':
+                    text2save = str(text2save) + "W"
+                elif world.organism[x][y].name is 'Sheep':
+                    text2save = str(text2save) + "O"
+                elif world.organism[x][y].name is 'Fox':
+                    text2save = str(text2save) + "L"
+                elif world.organism[x][y].name is 'Turtle':
+                    text2save = str(text2save) + "T"
+                elif world.organism[x][y].name is 'Antelope':
+                    text2save = str(text2save) + "A"
+                elif world.organism[x][y].name is 'Human':
+                    text2save = str(text2save) + "C"
+                elif world.organism[x][y].name is 'Grass':
+                    text2save = str(text2save) + "T"
+                elif world.organism[x][y].name is 'SowThistle':
+                    text2save = str(text2save) + "M"
+                elif world.organism[x][y].name is 'Guarana':
+                    text2save = str(text2save) + "G"
+                elif world.organism[x][y].name is 'DeadlyNightshade':
+                    text2save = str(text2save) + "J"
+            text2save = text2save + "\n"
+            print(text2save)
+        f.write(text2save)
+        f.close() # `()` was missing.
+
+
     def insertRandomly(self, event, n, m, world):
         """insert randomly organisms onto hovered label, just for fun"""
         a = randint(0, 7)
@@ -131,7 +168,6 @@ class GUI:
             world.h_dir = 'elixir'
         else:
             world.h_dir = -10
-
 
     def call_runoff(self, event, world):
         """Called on NextRound button clicking, or pressing Enter"""
