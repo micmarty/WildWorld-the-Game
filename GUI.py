@@ -35,6 +35,7 @@ class GUI:
         """sets three buttons: NEXT ROUND, SAVE, LOAD"""
         self.nextRun.bind("<Button-1>", lambda event: self.call_runoff(event, world))
         self.master.bind("<Return>", lambda event: self.call_runoff(event, world))
+        self.master.bind("<KeyPress>", lambda e: self.key_press(e, world))
         self.nextRun.pack(side=TOP)
 
         self.saveButton.bind("<Button-1>")
@@ -99,7 +100,22 @@ class GUI:
         self.label[n][m].configure(image=world.organism[n][m].icon)
         self.label[n][m].image = world.organism[n][m].icon
 
+    def key_press(self, e, world):
+        """Handle directions for human movement"""
+        if e.char is 'd':
+            world.h_dir = 0
+        elif e.char is 's':
+            world.h_dir = 1
+        elif e.char is 'a':
+            world.h_dir = 2
+        elif e.char is 'w':
+            world.h_dir = 3
+        else:
+            world.h_dir = -1
+
+
     def call_runoff(self, event, world):
+        """Called on NextRound button clicking, or pressing Enter"""
         world.move_all()
 
 

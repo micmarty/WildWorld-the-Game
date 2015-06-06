@@ -7,17 +7,7 @@ import AnimalsAll
 class Animal(Organism):
     age = 0
 
-    def move(self):
-        #TODO typical movement here
-        pass
-
-
-    def action(self, world):
-        """an Animal do something(typically moving, avoiding enemies or stay in place"""
-        direction = randint(0, 3)
-        call_collision = False
-        shift = 1            # moving range
-
+    def move(self, world, direction, shift, params):
         if direction is 0:   # GO RIGHT
             if self.x < (20 - shift):
                 if world.organism[self.x + shift][self.y] is None:
@@ -25,9 +15,9 @@ class Animal(Organism):
                     world.organism[self.x][self.y] = None
                     self.x += shift
                 else:
-                    x_obstacle = self.x + shift
-                    y_obstacle = self.y
-                    call_collision = True
+                    params[1] = self.x + shift
+                    params[2] = self.y
+                    params[0] = True
         elif direction is 1:  # GO DOWN
             if self.y < (20 - shift):
                 if world.organism[self.x][self.y + shift] is None:
@@ -35,9 +25,9 @@ class Animal(Organism):
                     world.organism[self.x][self.y] = None
                     self.y += shift
                 else:
-                    x_obstacle = self.x
-                    y_obstacle = self.y + shift
-                    call_collision = True
+                    params[1] = self.x
+                    params[2] = self.y + shift
+                    params[0] = True
         elif direction is 2:  # GO LEFT
             if self.x > (shift - 1):
                 if world.organism[self.x - shift][self.y] is None:
@@ -45,9 +35,9 @@ class Animal(Organism):
                     world.organism[self.x][self.y] = None
                     self.x -= shift
                 else:
-                    x_obstacle = self.x - shift
-                    y_obstacle = self.y
-                    call_collision = True
+                    params[1] = self.x - shift
+                    params[2] = self.y
+                    params[0] = True
         elif direction is 3:  # GO UP
             if self.y > (shift - 1):
                 if world.organism[self.x][self.y - shift] is None:
@@ -55,14 +45,24 @@ class Animal(Organism):
                     world.organism[self.x][self.y] = None
                     self.y -= shift
                 else:
-                    x_obstacle = self.x
-                    y_obstacle = self.y - shift
-                    call_collision = True
+                    params[1] = self.x
+                    params[2] = self.y - shift
+                    params[0] = True
         else:
             pass
 
-        if call_collision is True:
-            self.collision(world, x_obstacle, y_obstacle)
+
+    def action(self, world):
+        """an Animal do something(typically moving, avoiding enemies or stay in place"""
+        direction = randint(0, 3)
+        shift = 1            # moving range
+        call_collision, x_obstacle, y_obstacle = False, 0, 0
+        params = [call_collision, x_obstacle, y_obstacle]
+
+        self.move(world, direction, shift, params)
+
+        if params[0] is True:
+            self.collision(world, params[1], params[2])
 
 
     def give_clone(self, x_new, y_new, name):
