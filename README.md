@@ -4,17 +4,25 @@ Wild world simulator ->  turn-based game.
 
 Base info:
 -Game written in OOP Python.
+
 -GUI made in Tkinter library.
+
 -I have written the code imitiating PEP8 standard, for easier code reading and editing.
+
 -PyCharm was my IDE
 ---------------------------------------------------------------------------------------------------------
 In game there are 9 creatures.
+
 Each one have own attributes like for example: 
 
 initiative - decide which organism has priority movement in current round
+
              example: Fox is smarter so he moves first, then Turtle
+             
 strength - the stronger the more enemies can it kill
+
 age - if there are two animals with the same initiative, the older one moves first.
+
 
 Animal species:
   they move around, reproduce themself, kill each other, eat plants
