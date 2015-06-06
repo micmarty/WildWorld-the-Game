@@ -65,13 +65,14 @@ class Animal(Organism):
             self.collision(world, x_obstacle, y_obstacle)
 
 
-    def give_clone(self, x_new, y_new):
+    def give_clone(self, x_new, y_new, name):
         """returns new child of some Animals with age=0 ant appropriate coordinates"""
-        z = copy.deepcopy(self)
-        z.x = x_new
-        z.y = y_new
-        z.age = 0
-        return z
+        if name is 'Wolf':
+            return AnimalsAll.Wolf(x_new, y_new)
+        elif name is 'Sheep':
+            return AnimalsAll.Sheep(x_new, y_new)
+        elif name is 'Fox':
+            return AnimalsAll.Fox(x_new, y_new)
 
 
     def reproduce(self, world):
@@ -79,9 +80,8 @@ class Animal(Organism):
         """they look for empty label in neighboring labels"""
         x, y = randint(-1, 1), randint(-1, 1)
         if self.x + x >= 0 and self.y + y >= 0 and self.x + x <= 19 and self.y + y <= 19 and world.organism[self.x + x][self.y + y] is None:
+            world.organism[self.x + x][self.y + y] = self.give_clone(self.x + x, self.y + y, self.name)
             #update new event on raportLabel
-            #TODO HUGE PROBLEM, cloning didn't work. Propably need to hardcode it :(
-            world.organism[self.x + x][self.y + y] = AnimalsAll.Fox(self.x + x, self.y + y)#self.give_clone(self.x + x, self.y + y)
             world.raportText.set(self.name + " born at " + "[" + str(self.x + x) + "," + str(self.y + y) + "]\n" + world.raportText.get())
 
 

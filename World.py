@@ -3,8 +3,6 @@ from tkinter import *
 from GUI import GUI
 from AnimalsAll import Wolf, Sheep, Fox
 
-#from Sheep import Sheep
-
 
 class World:
     """Container class for all organisms.
