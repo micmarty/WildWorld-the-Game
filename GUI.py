@@ -1,7 +1,7 @@
 from tkinter import *
-
-from AnimalsAll import Wolf, Fox, Antelope
-
+from random import randint
+from AnimalsAll import Wolf, Sheep, Fox, Turtle, Antelope
+from PlantsAll import Grass, SowThistle, Guarana, DeadlyNightshade
 
 class GUI:
 
@@ -25,11 +25,11 @@ class GUI:
 
                 #Hovering at labels puts Wolf in there :D
                 def make_lambda(xx, yy, worldd):
-                    return lambda event: self.insertWolf(event, xx, yy, worldd)
+                    return lambda event: self.insertRandomly(event, xx, yy, worldd)
+
                 def make_lambdaa(xx, yy, worldd):
                     return lambda event: self.insertFox(event, xx, yy, worldd)
-                self.label[x][y].bind("<Button-1>", make_lambda(x, y, world))
-                self.label[x][y].bind("<Button-3>", make_lambdaa(x, y, world))
+                self.label[x][y].bind("<Enter>", make_lambda(x, y, world))
 
     def init_buttons(self, world):
         """sets three buttons: NEXT ROUND, SAVE, LOAD"""
@@ -88,9 +88,26 @@ class GUI:
 
         self.init_text_labels(world)
 
-    def insertWolf(self, event, n, m, world):
-        """insert wolf onto hovered label, just for fun"""
-        world.organism[n][m] = Wolf(n, m)
+    def insertRandomly(self, event, n, m, world):
+        """insert randomly organisms onto hovered label, just for fun"""
+        a = randint(0, 7)
+        if a is 0:
+            world.organism[n][m] = Wolf(n, m)
+        elif a is 1:
+            world.organism[n][m] = Sheep(n, m)
+        elif a is 2:
+            world.organism[n][m] = Fox(n, m)
+        elif a is 3:
+            world.organism[n][m] = Turtle(n, m)
+        elif a is 4:
+            world.organism[n][m] = Grass(n, m)
+        elif a is 5:
+            world.organism[n][m] = SowThistle(n, m)
+        elif a is 6:
+            world.organism[n][m] = Guarana(n, m)
+        elif a is 7:
+            world.organism[n][m] = DeadlyNightshade(n, m)
+
         self.label[n][m].configure(image=world.organism[n][m].icon)
         self.label[n][m].image = world.organism[n][m].icon
 

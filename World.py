@@ -2,7 +2,7 @@ from tkinter import *
 
 from GUI import GUI
 from AnimalsAll import Wolf, Sheep, Fox, Turtle,Antelope, Human
-from PlantsAll import Grass,SowThistle
+from PlantsAll import Grass,SowThistle, Guarana, DeadlyNightshade
 
 
 class World:
@@ -22,8 +22,8 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-        self.organism[11][11] = SowThistle(11, 11)
-        self.organism[9][10] = Antelope(9, 10)
+        self.organism[11][11] = DeadlyNightshade(11, 11)
+        self.organism[9][10] = Guarana(9, 10)
         self.organism[10][10] = Human(10, 10)
 
 

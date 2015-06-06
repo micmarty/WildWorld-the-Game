@@ -129,5 +129,9 @@ class Animal(Organism):
                 world.raportText.set("Antelope has surrender\n" + world.raportText.get())
             return
 
+        if world.organism[x_obstacle][y_obstacle].name is 'Guarana':
+            world.infoText.set(self.name + " just ate a Guarana (+3 strength)\n" + world.infoText.get())
+            self.strength += 3
+            world.infoText.set(self.name + " has now " + str(self.strength) + " strength \n" + world.infoText.get())
 
         self.collide(world, x_obstacle, y_obstacle)
