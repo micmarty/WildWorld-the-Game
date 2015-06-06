@@ -122,7 +122,6 @@ class Animal(Organism):
         #Antelope can avoid attack and call action once more
         if world.organism[x_obstacle][y_obstacle].name is 'Antelope':
             survive = randint(0, 1)
-            print(survive)
             if survive is 1:
                 world.organism[x_obstacle][y_obstacle].action(world)
                 world.raportText.set("Antelope tried to run away\n" + world.raportText.get())
