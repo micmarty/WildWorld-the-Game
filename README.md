@@ -2,6 +2,11 @@
 AUTHOR: Michal Martyniak, Poland
 Wild world simulator ->  turn-based game.
 
+Screenshot:
+http://s24.postimg.org/5tx589udx/in_Game_Photo.png
+(ikony w języku polskim. W - wilk, Z - żółw, L - lis itd.)
+
+
 Base info:
 
 -Game written in OOP Python.
