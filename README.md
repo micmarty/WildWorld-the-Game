@@ -1,5 +1,6 @@
 # Python
 AUTHOR: Michal Martyniak, Poland
+
 Wild world simulator ->  turn-based game.
 
 Screenshot:
