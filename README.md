@@ -18,7 +18,7 @@ Screenshot:
 
 - PyCharm was my IDE
 
-## __Rules__
+## ~~Rules~~
 no rules, it's a ~sandbox or ~simulation
 1. There are 9 creatures.
 
@@ -44,26 +44,26 @@ example: Fox is smarter so he moves first, then Turtle, etc.
 ## Animals: 
 
 
-Spiecies | desciption | strength | initiative 
------------- | -------------|-------------|---------------
-Human |  he moves using WSAD, drink stamina elixir that gives up to 10 strength on 'T' key, in game he is a 'C' letter like człowiek in polish | - | -
-Wolf | - | 9 | 5
-Sheep | - | 4 | 4
-Fox | SMART power: fox never goes on stronger enemy's teritory | 3 | 7
-Turtle | <ul><li>MOTIONLESS power: turtle has lower chance to move somewhere. Often stay in place.</li><li>>SPARTAN SHIELD power: turtle avoid enemy, that has less than 5 points of strength. Enemy won't win with him, then.</li></ul> | 2 | 1
-Antelope |  <ul><li>CRAZY JUMP power: antelope jumps every 2 fiels instead of 1(like other species)</li><li>FAST ESCAPE power: antelope has 50% chance to do additional move, when enemy would normally kill</li> | 4 | 4
+Spiecies | icon | desciption | strength | initiative 
+------ | ------ | -------------|-------------|---------------
+Human | ![human_icon](icons/czlowiek.png) |  he moves using WSAD, drink stamina elixir that gives up to 10 strength on 'T' key, in game he is a 'C' letter like człowiek in polish | - | -
+Wolf | ![wolf_icon](icons/wolf.png) | - | 9 | 5
+Sheep | ![sheep_icon](icons/owca.png) | - | 4 | 4
+Fox | ![fox_icon](icons/lis.png) | SMART power: fox never goes on stronger enemy's teritory | 3 | 7
+Turtle | ![turtle_icon](icons/zolw.png) | <ul><li>MOTIONLESS power: turtle has lower chance to move somewhere. Often stay in place.</li><li>>SPARTAN SHIELD power: turtle avoid enemy, that has less than 5 points of strength. Enemy won't win with him, then.</li></ul> | 2 | 1
+Antelope | ![antelope_icon](icons/antylopa.png) |  <ul><li>CRAZY JUMP power: antelope jumps every 2 fiels instead of 1(like other species)</li><li>FAST ESCAPE power: antelope has 50% chance to do additional move, when enemy would normally kill</li> | 4 | 4
   
 ## Plants:
-Plant | desciption 
------------- | -------------
-Grass | just grows, useless
-Sow thistle | takes 3 attempts to spread somewhere
-Guarana | once eaten gives +3 strength
-Deadly nightshade | once eaten, kills
+Plant | icon | desciption 
+------- | ----- | -------------
+Grass | ![grass_icon](icons/trawa.png) | just grows, useless
+Sow thistle | ![sow_thistle_icon](icons/mlecz.png) | takes 3 attempts to spread somewhere
+Guarana | ![guarana_icon](icons/guarana.png) | once eaten gives +3 strength
+Deadly nightshade | ![deadly_nightshade_icon](icons/wilczajagoda.png) | once eaten, kills
 
 ## Additional features:
   
-- --You can SAVE game into file (txt), and then LOAD it--
+- ~~You can SAVE game into file (txt), and then LOAD it~~ **no you can't :( do that for now**
   
 - There are 2 boxes, that informs you about events (killing, eating, reproducing)
   
