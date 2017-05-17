@@ -1,9 +1,8 @@
-# Wild world simulator -> just a game
+# Wild world simulator
 
 ![Link to screenshot](http://i.imgur.com/NUZ9U4u.png)
 
-(icons were made in polish language, sorry for now)
-(ikony w języku polskim. W - wilk, Z - żółw, L - lis itd.)
+(icons were made in polish language, marked as TODO at the bottom of this page)
 
 ## Basic info:
 
@@ -85,6 +84,7 @@ Deadly nightshade | ![deadly_nightshade_icon](icons/wilczajagoda.png) | once eat
 ## TODO
 - [x] use PEP
 - [x] update README to markdown
+- [ ] create normal icons :)
 - [ ] fix game saving and loading beacuse it doesn't work at all
 - [ ] adapt to new PEP rules
 - [ ] delete crappy code, start anew
