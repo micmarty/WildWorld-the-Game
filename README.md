@@ -9,13 +9,25 @@
 
 - Game written in OOP Python.
 
-- GUI made in Tkinter library.
+- GUI made in tkinter library.
 
 - I tried to use PEP8 standard, for easier code reading and editing.
 
 - I wrote that as my very first Python project, so don't blame me for crappy code
 
-- PyCharm was my IDE
+- PyCharm from Jetbrains was my IDE
+
+## How to run
+1. Make sure you have **Python** installed(version 3 is preffered -> I tested it on 3.5.2 and it worked like a charm)
+2. Install **tkinter** library
+3. Type in terminal/console:
+```
+$ python3 World.py
+or
+$ python World.py
+(version 3 is the default one, probably)
+```
+
 
 ## ~~Rules~~
 no rules, it's a sandbox or a simulation
