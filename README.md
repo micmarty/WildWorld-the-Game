@@ -1,7 +1,7 @@
 # Wild world simulator -> just a game
 
 Screenshot:
-![Link to screenshot](http://imgur.com/a/yZTXI)
+![Link to screenshot](http://i.imgur.com/NUZ9U4u.png)
 
 (icons were made in polish language, sorry for now)
 (ikony w języku polskim. W - wilk, Z - żółw, L - lis itd.)
@@ -18,17 +18,19 @@ Screenshot:
 
 - PyCharm was my IDE
 
-### In game there are 9 creatures.
+## __Rules__
+no rules, it's a ~sandbox or ~simulation
+1. There are 9 creatures.
 
-Each one has its own attributes like: 
+2. Each one has its own attributes like: 
+  - initiative - decide which organism can move first
+```
+example: Fox is smarter so he moves first, then Turtle, etc.
+```
 
-- initiative - decide which organism can move first
+  - strength - the stronger animal is, the more enemies it can defeat
 
-             example: Fox is smarter so he moves first, then Turtle, etc.
-             
-- strength - the stronger animal is, the more enemies it can defeat
-
-- age - if there are two animals with the same initiative, the older one moves first.
+  - age - if there are two animals with the same initiative, the older one moves first.
 
 **what animal species does:**
 
@@ -50,34 +52,33 @@ Sheep | - | 4 | 4
 Fox | SMART power: fox never goes on stronger enemy's teritory | 3 | 7
 Turtle | <ul><li>MOTIONLESS power: turtle has lower chance to move somewhere. Often stay in place.</li><li>>SPARTAN SHIELD power: turtle avoid enemy, that has less than 5 points of strength. Enemy won't win with him, then.</li></ul> | 2 | 1
 Antelope |  <ul><li>CRAZY JUMP power: antelope jumps every 2 fiels instead of 1(like other species)</li><li>FAST ESCAPE power: antelope has 50% chance to do additional move, when enemy would normally kill</li> | 4 | 4
-                                  
-    
-          
-          
-          
-## Plants:  
+  
+## Plants:
+Plant | desciption 
+------------ | -------------
+Grass | just grows, useless
+Sow thistle | takes 3 attempts to spread somewhere
+Guarana | once eaten gives +3 strength
+Deadly nightshade | once eaten, kills
 
-  *Grass:   just grows
+## Additional features:
   
-  *SowThistle: takes 3 attempts to spread somewhere
+- --You can SAVE game into file (txt), and then LOAD it--
   
-  *Guarana: gives +3 strength to creature, which eat it
+- There are 2 boxes, that informs you about events (killing, eating, reproducing)
   
-  *DeadlyNightshade: Kills everyone, who eat it
+- You don't need to click 'NextRound' button, just press ENTER
   
-  
-  ----------------------------------------------------------------------------------------
-  Additional features:
-  
-  *You can SAVE game to file (txt), and then LOAD it
-  
-  *There are 2 boxes, that informs you about events (killing, eating, reproducing)
-  
-  *You don't need do click 'NextRound' button, just press ENTER
-  
-  *MAGIC PEN, hover with mouse at some field. Randomly generated organism would appear.
+- MAGIC PEN, hover with mouse at some field. Randomly generated organism would appear.
                   
-    
+## TODO
+- [x] use PEP
+- [x] update README to markdown
+- [ ] fix game saving and loading beacuse it doesn't work at all
+- [ ] adapt to new PEP rules
+- [ ] delete crappy code, start anew
+- [ ] maybe use PyGame
+
 
 
 
