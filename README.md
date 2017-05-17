@@ -1,83 +1,61 @@
-# Python
-AUTHOR: Michal Martyniak, Poland
-
-Wild world simulator ->  turn-based game.
+# Wild world simulator -> just a game
 
 Screenshot:
-http://s24.postimg.org/5tx589udx/in_Game_Photo.png
+![Link to screenshot](http://imgur.com/a/yZTXI)
+
+(icons were made in polish language, sorry for now)
 (ikony w języku polskim. W - wilk, Z - żółw, L - lis itd.)
 
+## Basic info:
 
-Base info:
+- Game written in OOP Python.
 
--Game written in OOP Python.
+- GUI made in Tkinter library.
 
--GUI made in Tkinter library.
+- I tried to use PEP8 standard, for easier code reading and editing.
 
--I have written the code imitiating PEP8 standard, for easier code reading and editing.
+- I wrote that as my very first Python project, so don't blame me for crappy code
 
--PyCharm was my IDE
----------------------------------------------------------------------------------------------------------
-In game there are 9 creatures.
+- PyCharm was my IDE
 
-Each one have own attributes like for example: 
+### In game there are 9 creatures.
 
-initiative - decide which organism has priority movement in current round
+Each one has its own attributes like: 
 
-             example: Fox is smarter so he moves first, then Turtle
+- initiative - decide which organism can move first
+
+             example: Fox is smarter so he moves first, then Turtle, etc.
              
-strength - the stronger the more enemies can it kill
+- strength - the stronger animal is, the more enemies it can defeat
 
-age - if there are two animals with the same initiative, the older one moves first.
+- age - if there are two animals with the same initiative, the older one moves first.
 
---------------------------------------------------------------------------------------------------------
-Animal species:
+**what animal species does:**
 
   they move around, reproduce themself, kill each other, eat plants
   
-  
-  
-  
-Plants species:
+**what plants does**
 
-  they just spread around the map and stay in place
-  
-  
-  
-  
-  
+  they just spread around the map and make no moves
 
-Animals: 
 
-  *Human: he moves using WSAD, T- elixir that gives up to 10 strength
-  
-  *Wolf : strength=9, initiative=5
-  
-  *Sheep: strength=4, initiative=4
-  
-  *Fox  : strength=3, initiative=7
-  
-          'good sense of smell' power: fox never goes on stronger enemy's teritory
-          
-          
-  *Turtle  : strength=2, initiative=1
-  
-          'motionless' power: turtle has lower chance to move somewhere. Often stay in place.
-          
-          'spartan shield' power: turtle avoid enemy, that has less than 5 points of strength.  
-          
-                                  Enemy won't win with him, then.
+## Animals: 
+
+
+Spiecies | desciption | strength | initiative 
+------------ | -------------|-------------|---------------
+Human |  he moves using WSAD, drink stamina elixir that gives up to 10 strength on 'T' key, in game he is a 'C' letter like człowiek in polish | - | -
+Wolf | - | 9 | 5
+Sheep | - | 4 | 4
+Fox | SMART power: fox never goes on stronger enemy's teritory | 3 | 7
+Turtle | <ul><li>MOTIONLESS power: turtle has lower chance to move somewhere. Often stay in place.</li><li>>SPARTAN SHIELD power: turtle avoid enemy, that has less than 5 points of strength. Enemy won't win with him, then.</li></ul> | 2 | 1
+Antelope |  <ul><li>CRAZY JUMP power: antelope jumps every 2 fiels instead of 1(like other species)</li><li>FAST ESCAPE power: antelope has 50% chance to do additional move, when enemy would normally kill</li> | 4 | 4
                                   
-                                  
-  *Antelope  : strength=4, initiative=4
-  
-          'jumping' power: antelope jumps every 2 fiels instead of 1(like other species)
-          
-          'fast escape' power: antelope has 50% chance to do additional move, when enemy would normally kill
+    
           
           
           
-Plants:  
+## Plants:  
 
   *Grass:   just grows
   
