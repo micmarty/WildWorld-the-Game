@@ -1,6 +1,5 @@
 # Wild world simulator -> just a game
 
-Screenshot:
 ![Link to screenshot](http://i.imgur.com/NUZ9U4u.png)
 
 (icons were made in polish language, sorry for now)
@@ -19,22 +18,22 @@ Screenshot:
 - PyCharm was my IDE
 
 ## ~~Rules~~
-no rules, it's a ~sandbox or ~simulation
+no rules, it's a sandbox or a simulation
 1. There are 9 creatures.
 
-2. Each one has its own attributes like: 
-  - initiative - decide which organism can move first
+2. Each one has its own attributes, like: 
+  - initiative - decides who moves first
 ```
-example: Fox is smarter so he moves first, then Turtle, etc.
+example: Fox is smarter, so he moves first, then Turtle, etc.
 ```
 
-  - strength - the stronger animal is, the more enemies it can defeat
+  - strength - the stronger the animal is, the more enemies it can defeat
 
-  - age - if there are two animals with the same initiative, the older one moves first.
+  - age - if there are two animals with the same initiative, older one moves first.
 
 **what animal species does:**
 
-  they move around, reproduce themself, kill each other, eat plants
+  they move around, reproduce themselves, kill each other and eat plants
   
 **what plants does**
 
@@ -46,12 +45,12 @@ example: Fox is smarter so he moves first, then Turtle, etc.
 
 Spiecies | icon | desciption | strength | initiative 
 ------ | ------ | -------------|-------------|---------------
-Human | ![human_icon](icons/czlowiek.png) |  he moves using WSAD, drink stamina elixir that gives up to 10 strength on 'T' key, in game he is a 'C' letter like człowiek in polish | - | -
+Human | ![human_icon](icons/czlowiek.png) |  he moves using WSAD, drink stamina elixir - that gives up to 10 strength on 'T' key press, in game he is a 'C' letter, like "człowiek" in polish | - | -
 Wolf | ![wolf_icon](icons/wolf.png) | - | 9 | 5
 Sheep | ![sheep_icon](icons/owca.png) | - | 4 | 4
 Fox | ![fox_icon](icons/lis.png) | SMART power: fox never goes on stronger enemy's teritory | 3 | 7
-Turtle | ![turtle_icon](icons/zolw.png) | <ul><li>MOTIONLESS power: turtle has lower chance to move somewhere. Often stay in place.</li><li>>SPARTAN SHIELD power: turtle avoid enemy, that has less than 5 points of strength. Enemy won't win with him, then.</li></ul> | 2 | 1
-Antelope | ![antelope_icon](icons/antylopa.png) |  <ul><li>CRAZY JUMP power: antelope jumps every 2 fiels instead of 1(like other species)</li><li>FAST ESCAPE power: antelope has 50% chance to do additional move, when enemy would normally kill</li> | 4 | 4
+Turtle | ![turtle_icon](icons/zolw.png) | <ul><li>MOTIONLESS power: turtle has lower chance to move somewhere. Often stays in place.</li><li>>SPARTAN SHIELD power: turtles can avoid enemies which have less than 5 points of strength</li></ul> | 2 | 1
+Antelope | ![antelope_icon](icons/antylopa.png) |  <ul><li>CRAZY JUMP power: antelope jumps every 2 fiels instead of 1(like other species)</li><li>FAST ESCAPE power: antelope has a 50% chance to do an additional move during a life threatening situation</li> | 4 | 4
   
 ## Plants:
 Plant | icon | desciption 
