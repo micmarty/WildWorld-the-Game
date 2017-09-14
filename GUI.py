@@ -153,8 +153,10 @@ class GUI:
                         world.organism[x][y] = Antelope(x, y)
                     elif c is 'C':
                         world.organism[x][y] = Human(x, y)
+                    elif c is 'T':
+                        world.organism[x][y] = Grass(x, y)
                     elif c is '-':
-                        world.organism[x][y] = Grass(x,y)
+                        world.organism[x][y] = None
                     elif c is 'M':
                         world.organism[x][y] = SowThistle(x, y)
                     elif c is 'G':
