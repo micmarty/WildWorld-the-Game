@@ -29,7 +29,7 @@ class GUI:
                 #Hovering at labels puts random organism in there
                 def make_lambda(xx, yy, worldd):
                     return lambda event: self.insert_randomly(event, xx, yy, worldd)
-                self.label[x][y].bind("<Enter>", make_lambda(x, y, world))
+                self.label[x][y].bind("<ButtonPress-1>", make_lambda(x, y, world))
 
     def init_buttons(self, world):
         """sets three buttons: NEXT ROUND, SAVE, LOAD"""
@@ -53,13 +53,13 @@ class GUI:
         world.raportText.set("\nHere will be placed info about\nkilling, dying etc..\n")
         self.raportLabel.pack(side=TOP, fill=X)
 
-        world.infoText.set("\nWelcome!\nWSAD - move human (C icon)\nEnter - next round\n")
+        world.infoText.set("\nWelcome!\nWSAD - move human (C icon)\nEnter - next round\nPress Left Mouse Button to insert random creature\ne - drink +3 strength elixir")
         self.infoLabel.pack(side=TOP, fill=X)
 
     def __init__(self, master, world):
         #-MAIN WINDOW
         self.master = master
-        self.master.title("Wild world simulator - Michal Martyniak 155136")
+        self.master.title("Wild world simulator by micmarty")
         self.master.resizable(0, 0)
 
         #-FRAMES (Division main window by 2)
@@ -126,9 +126,16 @@ class GUI:
         f.close()
 
     @staticmethod
-    def load_game(event, world):
+    def load_game(event, world, load_example_map=False):
         x, y = 0, 0
-        with askopenfile(mode='r', defaultextension=".txt") as f:
+
+        map = None
+        if load_example_map is True:
+            map = open('saves/example-save.txt')
+        else:
+            map = askopenfile(mode='r', defaultextension=".txt") 
+
+        with map as f:
             while True:
                 c = f.read(1)
                 if not c:
@@ -146,23 +153,21 @@ class GUI:
                         world.organism[x][y] = Antelope(x, y)
                     elif c is 'C':
                         world.organism[x][y] = Human(x, y)
-                    elif c is 'T':
-                        world.organism[x][y] = Grass(x, y)
+                    elif c is '-':
+                        world.organism[x][y] = Grass(x,y)
                     elif c is 'M':
                         world.organism[x][y] = SowThistle(x, y)
                     elif c is 'G':
                         world.organism[x][y] = Guarana(x, y)
                     elif c is 'J':
                         world.organism[x][y] = DeadlyNightshade(x, y)
-                    else:
-                        world.organism[x][y] = None
-
-                    if x is 19:
+                    elif c is '\n':
                         y += 1
-                        x = 0
-                    if x <= 18:
+                        x = -1  # it become 0 in the statement below
+
+                    if x < 19:
                         x += 1
-                    if x is 19 and y is 19:
+                    elif x is 19 and y is 19:
                         break
 
         world.draw_runoff()
@@ -203,7 +208,7 @@ class GUI:
             world.h_dir = 2
         elif e.char is 'w':
             world.h_dir = 3
-        elif e.char is 't':
+        elif e.char is 'e':
             world.h_dir = 'elixir'
         else:
             world.h_dir = -10

@@ -22,9 +22,6 @@ class World:
         for y in range(20):
             for x in range(20):
                 self.organism[x][y] = None
-        self.organism[11][11] = DeadlyNightshade(11, 11)
-        self.organism[9][10] = Guarana(9, 10)
-        self.organism[10][10] = Human(10, 10)
 
 
     def sort(self, array):
@@ -64,6 +61,7 @@ if __name__ == '__main__':
     root = Tk()
     world = World()         # create just one World representation
     gui = GUI(root, world)  # sending also reference to our world
+    gui.load_game(None, world, load_example_map=True)
     world.draw_runoff()
     root.mainloop()
 
