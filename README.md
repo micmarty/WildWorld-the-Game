@@ -19,12 +19,12 @@
 ## How to run
 1. Make sure you have **Python** installed(version 3 is preffered -> I tested it on 3.5.2 and it worked like a charm)
 2. Install **tkinter** library
+```
+$ sudo apt install python3-tk
+```
 3. Type in terminal/console:
 ```
 $ python3 World.py
-or
-$ python World.py
-(version 3 is the default one, probably)
 ```
 
 
